@@ -53,6 +53,8 @@ function Auth() {
     }
   };
 
+  
+
   const handleLogout = async () => {
     try {
       await signOut(auth);

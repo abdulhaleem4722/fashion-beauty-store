@@ -1,79 +1,171 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
 import Home from "./pages/Home";
-import Auth from "./pages/Auth";
+import Auth from "./auth/Auth";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import Orders from "./pages/Orders";
+
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
 
+// ==================== ADMIN ====================
+
+import AdminDashboard from "./admin/pages/AdminDashboard";
+import AddProduct from "./admin/pages/AddProduct";
+import ManageProducts from "./admin/pages/ManageProducts.jsx";
+import Sales from "./admin/pages/Sales.jsx";
+import SalesDetail from "./admin/pages/S-detail.jsx";
+import AdminLayout from "./admin/pages/Adminlayout.jsx";
 
 function App() {
   const { currentUser } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Navbar />
+    <Routes>
 
-      <div className="mx-auto max-w-6xl px-4 py-8 flex-1 w-full">
-        <Routes>
-          <Route path="/" element={<Home />} />
+    {/* Admin Routes */}
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route
+          index
+          element={
+            <Navigate
+              to="dashboard"
+              replace
+            />
+          }
+        />
+        <Route
+          path="dashboard"
+          element={<AdminDashboard />}
+        />
+        <Route
+          path="add-product"
+          element={<AddProduct />}
+        />
+        <Route
+          path="products"
+          element={<ManageProducts />}
+        />
+        <Route
+          path="sales"
+          element={<Sales />}
+        />
+        <Route
+          path="sales-detail"
+          element={<SalesDetail />}
+        />
 
-          <Route
-            path="/login"
-            element={currentUser ? <Navigate to="/products" /> : <Auth />}
-          />
+      </Route>
 
-          <Route path="/products" element={<Products />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
+      {/* User Window */}
 
-          <Route
-            path="/cart"
-            element={
-              <ProtectedRoute>
-                <Cart />
-              </ProtectedRoute>
-            }
-          />
+      <Route
+        path="*"
+        element={
+          <div className="min-h-screen bg-gray-50 flex flex-col">
 
-          <Route
-            path="/checkout"
-            element={
-              <ProtectedRoute>
-                <Checkout />
-              </ProtectedRoute>
-            }
-          />
-        
+            <Navbar />
 
-          <Route
-            path="/order-success"
-            element={
-              <ProtectedRoute>
-                <OrderSuccess />
-              </ProtectedRoute>
-            }
-          />
+            <div className="mx-auto max-w-6xl px-4 py-8 flex-1 w-full">
 
-         
-          <Route
-            path="/orders"
-            element={
-              <ProtectedRoute>
-                <Orders />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </div>
+              <Routes>
 
-      <Footer />
-    </div>
+                {/* HOME */}
+                <Route
+                  path="/"
+                  element={<Home />}
+                />
+
+                {/* LOGIN */}
+                <Route path="/login" element={currentUser ? (currentUser.uid === "3FIQWmFn9xTheWDTX8B9GNrakPj1" ? (
+                  <Navigate
+                    to="/admin/dashboard"
+                    replace
+                  />
+                ) : (
+                  <Navigate to="/products" replace
+                  />
+                )) : (<Auth />)
+                }
+                />
+
+                {/* PRODUCTS */}
+                <Route
+                  path="/products"
+                  element={<Products />}
+                />
+
+                {/* PRODUCT DETAIL */}
+                <Route
+                  path="/product/:id"
+                  element={<ProductDetail />}
+                />
+
+                {/* CART */}
+                <Route
+                  path="/cart"
+                  element={
+                    <ProtectedRoute>
+                      <Cart />
+                    </ProtectedRoute>
+                  }
+                />
+
+                {/* CHECKOUT */}
+                <Route
+                  path="/checkout"
+                  element={
+                    <ProtectedRoute>
+                      <Checkout />
+                    </ProtectedRoute>
+                  }
+                />
+
+                {/* ORDER SUCCESS */}
+                <Route
+                  path="/order-success"
+                  element={
+                    <ProtectedRoute>
+                      <OrderSuccess />
+                    </ProtectedRoute>
+                  }
+                />
+
+                {/* ORDERS */}
+                <Route
+                  path="/orders"
+                  element={
+                    <ProtectedRoute>
+                      <Orders />
+                    </ProtectedRoute>
+                  }
+                />
+
+              </Routes>
+
+            </div>
+
+            <Footer />
+
+          </div>
+        }
+      />
+
+    </Routes>
   );
 }
 
