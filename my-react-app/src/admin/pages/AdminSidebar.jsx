@@ -159,7 +159,7 @@ function AdminSidebar() {
             </aside>
 
             {/* ===== MOBILE: TOP BAR ===== */}
-            <div className="lg:hidden sticky top-0 z-40 flex items-center justify-between bg-[#0B1220] px-4 py-3 shadow-md">
+            {/* <div className="lg:hidden sticky top-0 z-40 flex items-center justify-between bg-[#0B1220] px-4 py-3 shadow-md">
                 <div>
                     <span className="font-mono text-[10px] tracking-[0.3em] text-[#C9A227]">ADMIN</span>
                     <p className="text-sm font-semibold text-white leading-tight">Fashion Beauty</p>
@@ -173,7 +173,7 @@ function AdminSidebar() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-            </div>
+            </div> */}
 
             {/* ===== MOBILE: DRAWER OVERLAY ===== */}
             {mobileOpen && (

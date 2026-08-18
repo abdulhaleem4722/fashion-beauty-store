@@ -47,7 +47,7 @@ export default function Sales() {
 
         setError(
           "Unable to load sales: " +
-            (err.message || "Unknown error")
+          (err.message || "Unknown error")
         );
 
         setLoading(false);
@@ -175,7 +175,7 @@ export default function Sales() {
 
       <header className="sticky top-0 z-50 bg-[#0B1220] text-white shadow-sm">
 
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap- px-4 py-4 sm:px-6 lg:px-8">
 
           <div>
 
@@ -190,7 +190,14 @@ export default function Sales() {
           </div>
 
           <Link
-            to="/admin/sales/add"
+            to="/admin/dashboard"
+            className="rounded-md border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:border-white/40 hover:bg-white/5 active:scale-95"
+          >
+            ← Dashboard
+          </Link>
+
+          <Link
+            to="/admin/sales-detail"
             className="rounded-md bg-[#C9A227] px-4 py-2 text-sm font-semibold text-[#0B1220] transition hover:bg-[#D8B33B]"
           >
             + Add Sale
@@ -479,14 +486,13 @@ export default function Sales() {
                           </span>
 
                           <p
-                            className={`text-xs font-medium ${
-                              sale.paymentStatus === "Paid"
-                                ? "text-green-600"
-                                : sale.paymentStatus ===
-                                  "Partial"
+                            className={`text-xs font-medium ${sale.paymentStatus === "Paid"
+                              ? "text-green-600"
+                              : sale.paymentStatus ===
+                                "Partial"
                                 ? "text-orange-600"
                                 : "text-red-600"
-                            }`}
+                              }`}
                           >
                             {sale.paymentStatus || "—"}
                           </p>

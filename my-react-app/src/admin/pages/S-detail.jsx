@@ -284,8 +284,8 @@ export default function SalesDetail() {
       {toast && (
         <div
           className={`fixed top-4 right-4 z-[60] flex items-start gap-2 rounded-md border px-4 py-3 text-sm shadow-lg ${toast.type === "success"
-              ? "border-green-200 bg-green-50 text-green-700"
-              : "border-red-200 bg-red-50 text-red-700"
+            ? "border-green-200 bg-green-50 text-green-700"
+            : "border-red-200 bg-red-50 text-red-700"
             }`}
         >
           <svg
@@ -328,6 +328,13 @@ export default function SalesDetail() {
               Add New Sale
             </h1>
           </div>
+
+          <Link
+            to="/admin/dashboard"
+            className="rounded-md border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:border-white/40 hover:bg-white/5 active:scale-95"
+          >
+            ← Dashboard
+          </Link>
 
           <Link
             to="/admin/sales"
