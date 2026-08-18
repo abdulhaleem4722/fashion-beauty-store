@@ -41,26 +41,8 @@ function AdminDashboard() {
         </svg>
       ),
     },
-    {
-      to: "/admin/sales",
-      label: "Sales",
-      description: "Track revenue, orders, and inventory movement.",
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="h-5 w-5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4 19V10M11 19V4M18 19v-7" />
-        </svg>
-      ),
-    },
-    {
-      to: "/admin/sales-detail",
-      label: "Add sales",
-      description: "Add sales details to the store catalog.",
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="h-5 w-5">
-          <Zap />
-        </svg>
-      ),
-    },
+    
+    
   ];
 
   return (
@@ -74,7 +56,7 @@ function AdminDashboard() {
               ADMIN CONSOLE
             </span>
             <h1 className="truncate text-lg font-semibold sm:text-xl">
-              FashionBeauty
+              A to Z Cosmetics
             </h1>
           </div>
 

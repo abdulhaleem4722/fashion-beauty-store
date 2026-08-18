@@ -81,6 +81,22 @@ function ProductDetail() {
     }
   };
 
+  const handleWhatsAppOrder = (targetProduct) => {
+    const phoneNumber = "923153275238"; // +92 315 3275238 (WhatsApp format, no + or spaces)
+    const productUrl = `${window.location.origin}/product/${targetProduct.id}`;
+
+    const message = `Hi! I'm interested in this product:
+
+*${targetProduct.title}*
+Price: Rs. ${targetProduct.price}
+${productUrl}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappUrl, "_blank");
+  };
+
   if (loading) {
     return <p className="text-gray-500 p-6">Loading product...</p>;
   }
@@ -136,13 +152,30 @@ function ProductDetail() {
                 `Premium quality ${product.title} from our ${product.category} collection. Crafted with care to bring out your natural beauty.`}
             </p>
 
-            <button
-              onClick={() => handleAddToCart(product)}
-              disabled={adding}
-              className="mt-8 w-full md:w-auto rounded-xl bg-pink-600 px-8 py-3.5 text-white font-semibold hover:bg-pink-700 transition disabled:opacity-60"
-            >
-              {adding ? "Adding..." : "Add to Cart"}
-            </button>
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => handleAddToCart(product)}
+                disabled={adding}
+                className="flex-1 rounded-xl bg-pink-600 px-8 py-3.5 text-white font-semibold hover:bg-pink-700 transition disabled:opacity-60"
+              >
+                {adding ? "Adding..." : "Add to Cart"}
+              </button>
+
+              <button
+                onClick={() => handleWhatsAppOrder(product)}
+                className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 px-8 py-3.5 text-white font-semibold hover:bg-green-600 transition"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.85 14.02c-.25.7-1.25 1.29-2.03 1.46-.53.11-1.24.2-3.6-.77-3.02-1.25-4.97-4.32-5.12-4.52-.15-.2-1.23-1.63-1.23-3.12 0-1.48.78-2.21 1.05-2.52.27-.3.6-.38.8-.38h.57c.18 0 .42-.02.65.5.25.6.86 2.08.93 2.23.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.17-.32.38-.45.51-.15.15-.31.31-.13.61.18.3.79 1.31 1.7 2.12 1.17 1.04 2.15 1.37 2.46 1.52.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.3.4-.25.68-.15.28.1 1.76.83 2.06.98.3.15.5.23.57.35.08.13.08.75-.17 1.44z" />
+                </svg>
+                Order on WhatsApp
+              </button>
+            </div>
 
             <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
               <div className="rounded-lg bg-gray-50 p-3">

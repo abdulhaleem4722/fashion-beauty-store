@@ -39,25 +39,9 @@ function AdminSidebar() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
             ),
-        },
-        {
-            to: '/admin/sales',
-            label: 'Sales',
-            icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="h-5 w-5 shrink-0">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 19V10M11 19V4M18 19v-7" />
-                </svg>
-            ),
-        },
-        {
-            to: '/admin/sales-detail',
-            label: 'Add sele',
-            icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="h-5 w-5 shrink-0">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 19V10M11 19V4M18 19v-7" />
-                </svg>
-            ),
         }
+    
+       
     ];
 
     const navLinkClass = ({ isActive }) =>
@@ -75,7 +59,7 @@ function AdminSidebar() {
                 {!collapsed && (
                     <div className="min-w-0">
                         <span className="font-mono text-[10px] tracking-[0.3em] text-[#C9A227]">ADMIN</span>
-                        <p className="truncate text-sm font-semibold text-white">Fashion Beauty</p>
+                        <p className="truncate text-sm font-semibold text-white">A to Z Cosmetics</p>
                     </div>
                 )}
                 <button
@@ -99,7 +83,7 @@ function AdminSidebar() {
             <div className="lg:hidden flex items-center justify-between px-4 py-5">
                 <div>
                     <span className="font-mono text-[10px] tracking-[0.3em] text-[#C9A227]">ADMIN</span>
-                    <p className="text-sm font-semibold text-white">Fashion Beauty</p>
+                    <p className="text-sm font-semibold text-white">A to Z Cosmetics</p>
                 </div>
                 <button
                     onClick={onItemClick}

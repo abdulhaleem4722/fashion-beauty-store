@@ -6,7 +6,7 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {/* Brand */}
         <div>
-          <h3 className="text-xl font-bold text-pink-600">FashionBeauty</h3>
+          <h3 className="text-xl font-bold text-pink-600">A to Z Cosmetics</h3>
           <p className="text-sm text-gray-500 mt-3 leading-relaxed">
             Your one-stop shop for makeup, skincare & haircare essentials.
             Quality products, delivered to your doorstep.
@@ -85,7 +85,7 @@ function Footer() {
       </div>
 
       <div className="border-t border-gray-100 py-4 text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} FashionBeauty. All rights reserved.
+        © {new Date().getFullYear()} shishamdev@ All rights reserved.
       </div>
     </footer>
   );

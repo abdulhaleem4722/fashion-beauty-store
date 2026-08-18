@@ -87,7 +87,7 @@ function Auth() {
     <div className="flex items-center justify-center py-16 px-4">
       <div className="w-full max-w-md rounded-2xl bg-white shadow-sm border border-gray-100 p-8">
         <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold text-pink-600">FashionBeauty</h1>
+          <h1 className="text-2xl font-bold text-pink-600">A to Z Cosmetics</h1>
           <p className="text-gray-500 mt-1">
             {isLogin ? "Login to your account" : "Create a new account"}
           </p>

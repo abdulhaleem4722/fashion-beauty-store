@@ -60,7 +60,8 @@ function Navbar() {
             to="/"
             className="text-xl sm:text-2xl font-extrabold text-pink-600 shrink-0 tracking-tight"
           >
-            FashionBeauty
+             A to Z Cosmetics
+           
           </Link>
 
           {/* Desktop search - hidden on mobile */}

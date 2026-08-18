@@ -13,6 +13,7 @@ import OrderSuccess from "./pages/OrderSuccess";
 import Orders from "./pages/Orders";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
+import AdminRoute from "./routes/AdminRoute";
 import { useAuth } from "./context/AuthContext";
 
 // ==================== ADMIN ====================
@@ -20,8 +21,7 @@ import { useAuth } from "./context/AuthContext";
 import AdminDashboard from "./admin/pages/AdminDashboard";
 import AddProduct from "./admin/pages/AddProduct";
 import ManageProducts from "./admin/pages/ManageProducts.jsx";
-import Sales from "./admin/pages/Sales.jsx";
-import SalesDetail from "./admin/pages/S-detail.jsx";
+
 import AdminLayout from "./admin/pages/Adminlayout.jsx";
 
 function App() {
@@ -30,13 +30,13 @@ function App() {
   return (
     <Routes>
 
-    {/* Admin Routes */}
+      {/* Admin Routes */}
       <Route
         path="/admin"
         element={
-          <ProtectedRoute>
+          <AdminRoute>
             <AdminLayout />
-          </ProtectedRoute>
+          </AdminRoute>
         }
       >
         <Route
@@ -59,14 +59,6 @@ function App() {
         <Route
           path="products"
           element={<ManageProducts />}
-        />
-        <Route
-          path="sales"
-          element={<Sales />}
-        />
-        <Route
-          path="sales-detail"
-          element={<SalesDetail />}
         />
 
       </Route>
