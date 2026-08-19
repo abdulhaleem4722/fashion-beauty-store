@@ -319,8 +319,19 @@ function AddProduct() {
                     required
                   >
                     <option value="Makeup">Makeup</option>
-                    <option value="Skincare">Skincare</option>
-                    <option value="Haircare">Haircare</option>
+                    <option value="Party Items">Party Items</option>
+                    <option value="Bangles">Bangles</option>
+                    <option value="Facial Products">Facial Products</option>
+                    <option value="Electronic">Electronic</option>
+                    <option value="Hair Care">Hair Care</option>
+                    <option value="Mix Brand">Mix Brand</option>
+                    <option value="Skin Care">Skin Care</option>
+                    <option value="Color Cosmetics">Color Cosmetics</option>
+                    <option value="Undergarments">Undergarments</option>
+                    <option value="Shampoo">Shampoo</option>
+                    <option value="Parfum">Parfum</option>
+                    <option value="Body Spray">Body Spray</option>
+                    <option value="Hair Color">Hair Color</option>
                   </select>
                 </div>
 

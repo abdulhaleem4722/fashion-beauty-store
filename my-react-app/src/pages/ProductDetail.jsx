@@ -82,7 +82,7 @@ function ProductDetail() {
   };
 
   const handleWhatsAppOrder = (targetProduct) => {
-    const phoneNumber = "923153275238"; // +92 315 3275238 (WhatsApp format, no + or spaces)
+    const phoneNumber = "923005158730"; // +92 300 5158730 (WhatsApp format, no + or spaces)
     const productUrl = `${window.location.origin}/product/${targetProduct.id}`;
 
     const message = `Hi! I'm interested in this product:

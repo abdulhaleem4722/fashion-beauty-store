@@ -3,7 +3,6 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Zap } from "lucide-react";
 
 function AdminDashboard() {
 
@@ -21,6 +20,9 @@ function AdminDashboard() {
   };
 
   const actions = [
+
+
+
     {
       to: "/admin/add-product",
       label: "Add product",
@@ -41,8 +43,10 @@ function AdminDashboard() {
         </svg>
       ),
     },
+
     
-    
+
+
   ];
 
   return (
@@ -117,6 +121,7 @@ function AdminDashboard() {
             </Link>
           ))}
         </div>
+
       </div>
     </div>
   );

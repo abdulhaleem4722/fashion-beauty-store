@@ -8,9 +8,6 @@ import Auth from "./auth/Auth";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import ProductDetail from "./pages/ProductDetail";
-import Checkout from "./pages/Checkout";
-import OrderSuccess from "./pages/OrderSuccess";
-import Orders from "./pages/Orders";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 import AdminRoute from "./routes/AdminRoute";
@@ -72,7 +69,7 @@ function App() {
 
             <Navbar />
 
-            <div className="mx-auto max-w-6xl px-4 py-8 flex-1 w-full">
+            <div className="mx-auto max-w-6xl px-4 py-8 pb-24 md:pb-8 flex-1 w-full">
 
               <Routes>
 
@@ -83,7 +80,7 @@ function App() {
                 />
 
                 {/* LOGIN */}
-                <Route path="/login" element={currentUser ? (currentUser.uid === "0S6VJ6EkY4eNJPBtRyz6DwQ5B5F2" ? (
+                <Route path="/login" element={currentUser ? (currentUser.uid === "3FIQWmFn9xTheWDTX8B9GNrakPj1" ? (
                   <Navigate
                     to="/admin/dashboard"
                     replace
@@ -113,36 +110,6 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <Cart />
-                    </ProtectedRoute>
-                  }
-                />
-
-                {/* CHECKOUT */}
-                <Route
-                  path="/checkout"
-                  element={
-                    <ProtectedRoute>
-                      <Checkout />
-                    </ProtectedRoute>
-                  }
-                />
-
-                {/* ORDER SUCCESS */}
-                <Route
-                  path="/order-success"
-                  element={
-                    <ProtectedRoute>
-                      <OrderSuccess />
-                    </ProtectedRoute>
-                  }
-                />
-
-                {/* ORDERS */}
-                <Route
-                  path="/orders"
-                  element={
-                    <ProtectedRoute>
-                      <Orders />
                     </ProtectedRoute>
                   }
                 />

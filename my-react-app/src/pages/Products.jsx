@@ -11,7 +11,23 @@ function Products() {
 
   const activeCategory = searchParams.get("category") || "All";
   const searchTerm = searchParams.get("search") || "";
-  const categories = ["All", "Makeup", "Skincare", "Haircare"];
+  const categories = [
+    "All",
+    "Makeup",
+    "Party Items",
+    "Bangles",
+    "Facial Products",
+    "Electronic",
+    "Hair Care",
+    "Mix Brand",
+    "Skin Care",
+    "Color Cosmetics",
+    "Undergarments",
+    "Shampoo",
+    "Parfum",
+    "Body Spray",
+    "Hair Color",
+  ];
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -112,7 +128,7 @@ function Products() {
       )}
 
       {/* Category filter pills */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6 overflow-hidden">
         {categories.map((cat) => (
           <button
             key={cat}
