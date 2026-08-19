@@ -80,7 +80,7 @@ function App() {
                 />
 
                 {/* LOGIN */}
-                <Route path="/login" element={currentUser ? (currentUser.uid === "3FIQWmFn9xTheWDTX8B9GNrakPj1" ? (
+                <Route path="/login" element={currentUser ? (currentUser.uid === "0S6VJ6EkY4eNJPBtRyz6DwQ5B5F2" ? (
                   <Navigate
                     to="/admin/dashboard"
                     replace
