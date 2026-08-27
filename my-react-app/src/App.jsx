@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 import Home from "./pages/Home";
 import Auth from "./auth/Auth";
@@ -119,6 +120,8 @@ function App() {
             </div>
 
             <Footer />
+
+            <WhatsAppButton />
 
           </div>
         }
