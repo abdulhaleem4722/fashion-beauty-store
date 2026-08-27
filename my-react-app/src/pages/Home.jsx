@@ -58,38 +58,45 @@ function Home() {
       </section>
 
       {/* Category Tiles */}
-  {/* Category Tiles */}
-<section>
-  <h2 className="text-xl font-semibold text-gray-900 mb-5">Shop by Category</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-    {categories.map((cat) => (
-      <Link
-        key={cat.name}
-        to={`/products?category=${cat.name}`}
-        className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-56"
-      >
-        <img
-          src={cat.image}
-          alt={cat.name}
-          className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-5 flex items-center justify-between">
-          <h3 className="text-white text-xl font-bold">{cat.name}</h3>
-          <span className="text-white text-sm font-medium bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 group-hover:bg-pink-600 transition">
-            Shop →
-          </span>
+      {/* Category Tiles */}
+      <section>
+        <h2 className="text-xl font-semibold text-gray-900 mb-5">Shop by Category</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {categories.map((cat) => (
+            <Link
+              key={cat.name}
+              to={`/products?category=${cat.name}`}
+              className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-56"
+            >
+              <img
+                src={cat.image}
+                alt={cat.name}
+                className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 flex items-center justify-between">
+                <h3 className="text-white text-xl font-bold">{cat.name}</h3>
+                <span className="text-white text-sm font-medium bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 group-hover:bg-pink-600 transition">
+                  Shop →
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
-      </Link>
-    ))}
-  </div>
-</section>
+      </section>
 
+    
       {/* Featured Products */}
       <section className="rounded-2xl bg-white shadow-sm border border-gray-100 p-6">
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-2xl font-semibold text-gray-900">Featured Products</h2>
-          <Link to="/products" className="text-sm text-pink-600 font-medium hover:underline">
+          <h2 className="text-2xl font-semibold text-gray-900">
+            Featured Products
+          </h2>
+
+          <Link
+            to="/products"
+            className="text-sm text-pink-600 font-medium hover:underline"
+          >
             View All →
           </Link>
         </div>
@@ -99,20 +106,29 @@ function Home() {
         ) : (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((item) => (
-              <div
+              <Link
                 key={item.id}
-                className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md hover:border-pink-200 transition"
+                to={`/product/${item.id}`}
+                className="block"
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-40 w-full rounded-lg object-cover bg-gray-100"
-                />
-                <h3 className="mt-3 text-base font-semibold text-gray-900">
-                  {item.title}
-                </h3>
-                <p className="text-pink-600 font-bold">Rs. {item.price}</p>
-              </div>
+                <div
+                  className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md hover:border-pink-200 transition cursor-pointer"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-40 w-full rounded-lg object-cover bg-gray-100"
+                  />
+
+                  <h3 className="mt-3 text-base font-semibold text-gray-900">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-pink-600 font-bold">
+                    Rs. {item.price}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
         )}
