@@ -18,11 +18,7 @@ function AdminDashboard() {
         setLogoutError(error.message);
       });
   };
-
   const actions = [
-
-
-
     {
       to: "/admin/add-product",
       label: "Add product",
@@ -43,12 +39,17 @@ function AdminDashboard() {
         </svg>
       ),
     },
-
-    
-
-
+    {
+      to: "/admin/flash-deals",
+      label: "Flash Deals",
+      description: "Add or manage discounted deal products for the homepage banner.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="h-5 w-5">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+    },
   ];
-
   return (
     <div className="min-h-screen bg-[#FAFAF9]">
 

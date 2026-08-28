@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { db } from "../firebase/firebase";
 import { collection, getDocs, limit, query } from "firebase/firestore";
+import HeroBanner from "../components/HeroBanner";
 
 const categories = [
   {
@@ -42,20 +43,8 @@ function Home() {
   return (
     <div className="space-y-10">
       {/* Hero Banner */}
-      <section className="rounded-2xl bg-gradient-to-r from-pink-600 to-rose-500 px-8 py-16 text-center text-white shadow-sm">
-        <h1 className="text-3xl md:text-5xl font-extrabold">
-          Beauty & Fashion, Delivered
-        </h1>
-        <p className="mt-3 text-white/90 max-w-xl mx-auto">
-          Discover makeup, skincare & haircare essentials curated just for you.
-        </p>
-        <Link
-          to="/products"
-          className="mt-6 inline-block rounded-full bg-white px-8 py-3 font-semibold text-pink-600 hover:bg-gray-100 transition-colors"
-        >
-          Shop Now
-        </Link>
-      </section>
+     {/* Hero Banner */}
+<HeroBanner />
 
       {/* Category Tiles */}
       {/* Category Tiles */}

@@ -11,7 +11,6 @@ function AdminSidebar() {
     const handleLogout = () => {
         signOut(auth).then(() => navigate('/admin/login'));
     };
-
     const navItems = [
         {
             to: '/admin/dashboard',
@@ -39,16 +38,22 @@ function AdminSidebar() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
             ),
+        },
+        {
+            to: '/admin/flash-deals',
+            label: 'Flash Deals',
+            icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="h-5 w-5 shrink-0">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+            ),
         }
-    
-       
     ];
 
     const navLinkClass = ({ isActive }) =>
-        `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-150 ${
-            isActive
-                ? 'bg-[#C9A227] text-[#0B1220] shadow'
-                : 'text-slate-300 hover:bg-white/10 hover:text-white'
+        `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-150 ${isActive
+            ? 'bg-[#C9A227] text-[#0B1220] shadow'
+            : 'text-slate-300 hover:bg-white/10 hover:text-white'
         } ${collapsed ? 'justify-center' : ''}`;
 
     const SidebarNav = ({ onItemClick }) => (
@@ -135,11 +140,10 @@ function AdminSidebar() {
         <>
             {/* ===== DESKTOP SIDEBAR ===== */}
             <aside
-                className={`hidden lg:flex flex-col bg-[#0B1220] transition-all duration-300 h-screen sticky top-0 shrink-0 ${
-                    collapsed ? 'w-[68px]' : 'w-56'
-                }`}
+                className={`hidden lg:flex flex-col bg-[#0B1220] transition-all duration-300 h-screen sticky top-0 shrink-0 ${collapsed ? 'w-[68px]' : 'w-56'
+                    }`}
             >
-                <SidebarNav onItemClick={() => {}} />
+                <SidebarNav onItemClick={() => { }} />
             </aside>
 
             {/* ===== MOBILE: TOP BAR ===== */}

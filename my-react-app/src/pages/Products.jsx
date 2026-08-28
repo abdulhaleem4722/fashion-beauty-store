@@ -67,7 +67,7 @@ function Products() {
         {
           productId: product.id,
           title: product.title || "",
-          price: Number(product.price) || 0,
+          price: Number(product.onSale ? product.salePrice : product.price) || 0,
           image: product.image || "",
           category: product.category || "",
           quantity: newQty,
@@ -133,11 +133,10 @@ function Products() {
           <button
             key={cat}
             onClick={() => handleCategoryClick(cat)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-              activeCategory === cat
-                ? "bg-pink-600 text-white"
-                : "bg-gray-100 text-gray-700 hover:bg-pink-50"
-            }`}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition ${activeCategory === cat
+              ? "bg-pink-600 text-white"
+              : "bg-gray-100 text-gray-700 hover:bg-pink-50"
+              }`}
           >
             {cat}
           </button>
@@ -169,7 +168,17 @@ function Products() {
 
                 <div className="mt-4 space-y-1">
                   <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
-                  <p className="text-lg font-bold text-pink-600">Rs. {item.price}</p>
+                  {item.onSale ? (
+                    <div className="flex items-center flex-wrap gap-2">
+                      <p className="text-lg font-bold text-pink-600">Rs. {item.salePrice}</p>
+                      <p className="text-sm text-gray-400 line-through">Rs. {item.price}</p>
+                      <span className="text-xs font-semibold text-green-700 bg-green-50 px-1.5 py-0.5 rounded">
+                        {item.discountPercent}% OFF
+                      </span>
+                    </div>
+                  ) : (
+                    <p className="text-lg font-bold text-pink-600">Rs. {item.price}</p>
+                  )}
                 </div>
               </Link>
 

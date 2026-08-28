@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
-
+import { CLOUD_NAME, CLOUD_PRESET } from "../../config/cloudinary";
 function AddProduct() {
   const navigate = useNavigate();
 
@@ -11,6 +11,8 @@ function AddProduct() {
     price: "",
     category: "Makeup",
     image: "",
+    onSale: false,
+    discountPercent: "",
   });
 
   const [imagePreview, setImagePreview] = useState(null);
@@ -25,11 +27,11 @@ function AddProduct() {
   // =========================
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
 
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
 
     setError("");
@@ -61,17 +63,16 @@ function AddProduct() {
     setImagePreview(previewURL);
 
     try {
-      const cloudPreset = "laptop_store";
-      const cloudName = "dotj7pqvl";
+
 
       const data = new FormData();
 
       data.append("file", file);
-      data.append("upload_preset", cloudPreset);
-      data.append("cloud_name", cloudName);
+      data.append("upload_preset", CLOUD_PRESET);
+      data.append("cloud_name", CLOUD_NAME);
 
       const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
         {
           method: "POST",
           body: data,
@@ -145,18 +146,24 @@ function AddProduct() {
       // PRODUCT OBJECT
       // Same structure Products.jsx expects
       // =========================
+      const isOnSale = formData.onSale && Number(formData.discountPercent) > 0;
+      const originalPrice = Number(formData.price);
+      const discountPercent = isOnSale ? Number(formData.discountPercent) : 0;
+      const salePrice = isOnSale
+        ? Math.round(originalPrice - (originalPrice * discountPercent) / 100)
+        : originalPrice;
 
       const productData = {
         title: formData.title.trim(),
-        price: Number(formData.price),
+        price: originalPrice,        // original price hamesha yahan rahega
+        salePrice: salePrice,        // agar sale nahi hai to yeh price ke barabar hoga
+        onSale: isOnSale,
+        discountPercent: discountPercent,
         image: formData.image,
         category: formData.category,
-
-        // Optional useful metadata
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
       };
-
       // Save to:
       // products/{auto-generated-document-id}
 
@@ -335,6 +342,52 @@ function AddProduct() {
                   </select>
                 </div>
 
+
+
+                {/* SALE / DISCOUNT */}
+                <div className="rounded-lg border border-gray-200 p-4 bg-gray-50">
+                  <label className="flex items-center gap-2.5 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="onSale"
+                      checked={formData.onSale}
+                      onChange={handleInputChange}
+                      className="h-4 w-4 rounded border-gray-300 text-[#0B1220] focus:ring-[#C9A227]"
+                    />
+                    <span className="text-sm font-medium text-[#111521]">
+                      Is product par sale hai?
+                    </span>
+                  </label>
+
+                  {formData.onSale && (
+                    <div className="mt-4">
+                      <label className="mb-1.5 block text-sm font-medium text-[#111521]">
+                        Discount Percentage (%)
+                      </label>
+                      <input
+                        type="number"
+                        name="discountPercent"
+                        value={formData.discountPercent}
+                        onChange={handleInputChange}
+                        placeholder="e.g. 30"
+                        min="1"
+                        max="99"
+                        className="w-full rounded-md border border-gray-300 px-3.5 py-2.5 text-sm text-[#111521] placeholder:text-gray-400 focus:border-[#0B1220] focus:outline-none focus:ring-2 focus:ring-[#C9A227]/40"
+                      />
+
+                      {formData.price && formData.discountPercent > 0 && (
+                        <p className="mt-2 text-sm text-[#5B6478]">
+                          Original: <span className="line-through">Rs. {formData.price}</span>{" "}
+                          → Sale Price:{" "}
+                          <span className="font-semibold text-green-700">
+                            Rs. {Math.round(formData.price - (formData.price * formData.discountPercent) / 100)}
+                          </span>
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+
               </div>
 
             </div>
@@ -420,8 +473,8 @@ function AddProduct() {
               {saving
                 ? "Saving product..."
                 : uploadingImage
-                ? "Uploading image..."
-                : "Add Product"}
+                  ? "Uploading image..."
+                  : "Add Product"}
 
             </button>
 

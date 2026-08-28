@@ -67,7 +67,7 @@ function ProductDetail() {
         {
           productId: targetProduct.id,
           title: targetProduct.title || "",
-          price: Number(targetProduct.price) || 0,
+          price: Number(targetProduct.onSale ? targetProduct.salePrice : targetProduct.price) || 0,
           image: targetProduct.image || "",
           category: targetProduct.category || "",
           quantity: prevQty + 1,
@@ -85,10 +85,11 @@ function ProductDetail() {
     const phoneNumber = "923005158730"; // +92 300 5158730 (WhatsApp format, no + or spaces)
     const productUrl = `${window.location.origin}/product/${targetProduct.id}`;
 
+    const displayPrice = targetProduct.onSale ? targetProduct.salePrice : targetProduct.price;
     const message = `Hi! I'm interested in this product:
 
 *${targetProduct.title}*
-Price: Rs. ${targetProduct.price}
+Price: Rs. ${displayPrice}${targetProduct.onSale ? ` (${targetProduct.discountPercent}% OFF, original Rs. ${targetProduct.price})` : ""}
 ${productUrl}`;
 
     const encodedMessage = encodeURIComponent(message);
@@ -143,9 +144,17 @@ ${productUrl}`;
 
             <h1 className="text-3xl font-bold text-gray-900">{product.title}</h1>
 
-            <p className="text-3xl font-bold text-pink-600 mt-4">
-              Rs. {product.price}
-            </p>
+            {product.onSale ? (
+              <div className="flex items-center flex-wrap gap-3 mt-4">
+                <p className="text-3xl font-bold text-pink-600">Rs. {product.salePrice}</p>
+                <p className="text-xl text-gray-400 line-through">Rs. {product.price}</p>
+                <span className="text-sm font-semibold text-green-700 bg-green-50 px-2.5 py-1 rounded-full">
+                  {product.discountPercent}% OFF
+                </span>
+              </div>
+            ) : (
+              <p className="text-3xl font-bold text-pink-600 mt-4">Rs. {product.price}</p>
+            )}
 
             <p className="text-gray-500 mt-4 leading-relaxed">
               {product.description ||
@@ -215,7 +224,14 @@ ${productUrl}`;
                   <h3 className="mt-3 text-sm font-semibold text-gray-900 line-clamp-1">
                     {item.title}
                   </h3>
-                  <p className="text-sm font-bold text-pink-600">Rs. {item.price}</p>
+                  {item.onSale ? (
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <p className="text-sm font-bold text-pink-600">Rs. {item.salePrice}</p>
+                      <p className="text-xs text-gray-400 line-through">Rs. {item.price}</p>
+                    </div>
+                  ) : (
+                    <p className="text-sm font-bold text-pink-600">Rs. {item.price}</p>
+                  )}
                 </Link>
 
                 <button

@@ -19,7 +19,7 @@ import { useAuth } from "./context/AuthContext";
 import AdminDashboard from "./admin/pages/AdminDashboard";
 import AddProduct from "./admin/pages/AddProduct";
 import ManageProducts from "./admin/pages/ManageProducts.jsx";
-
+import FlashDeals from "./admin/pages/FlashDeals";
 import AdminLayout from "./admin/pages/Adminlayout.jsx";
 
 function App() {
@@ -58,6 +58,7 @@ function App() {
           path="products"
           element={<ManageProducts />}
         />
+        <Route path="flash-deals" element={<FlashDeals />} />
 
       </Route>
 
