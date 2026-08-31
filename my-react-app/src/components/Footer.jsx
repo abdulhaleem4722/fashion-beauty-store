@@ -83,14 +83,14 @@ function Footer() {
           </form>
         </div>
       </div>
-      <div className="border-t border-gray-100 py-4 flex items-center justify-center gap-2 text-center text-xs text-gray-400">
-        <img
-          src="/logo-shishamdev.png"
-          alt="Shishamdev Agency Logo"
-          className="h-8 w-8 rounded-full object-cover"
-        />
-        <span>© {new Date().getFullYear()} shisham.dev All rights reserved.</span>
-      </div>
+      <div className="border-t border-gray-100 py-4 pb-20 flex items-center justify-center gap-2 text-center text-xs text-gray-400">
+  <img 
+    src="/logo-shishamdev.png" 
+    alt="Shishamdev Agency Logo" 
+    className="h-8 w-8 rounded-full object-cover" 
+  />
+  <span>© {new Date().getFullYear()} shishamdev. All rights reserved.</span>
+</div>
     </footer>
   );
 }
